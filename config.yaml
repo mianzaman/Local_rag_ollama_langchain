@@ -1,0 +1,13 @@
+# rag_app = RAGApplication("config.yaml")
+# result = rag_app.get_answer("Your question here")
+
+pdf_dir: "E:/allinweb/Local_rag_ollama_langchain/data"
+chunk_size: 150
+chunk_overlap: 50
+embedding_model_name: "all-MiniLM-L6-v2"
+llm_model_name: "llama3.1"
+temperature: 0
+retriever_k: 4
+max_workers: 4
+faiss_index_path: "faiss_index"
+batch_size: 32

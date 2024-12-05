@@ -1,0 +1,3 @@
+.venv/
+.cspell/
+.faiss_index

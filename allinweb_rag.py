@@ -9,7 +9,7 @@ import os
 import pickle
 
 # Define the directory containing PDF files
-pdf_dir = r"E:\local-rag\RAg\data"
+pdf_dir = r"E:\allinweb\Local_rag_ollama_langchain\data"
 
 # Initialize a text splitter with specified chunk size and overlap
 text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(

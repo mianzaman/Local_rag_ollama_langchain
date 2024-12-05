@@ -1,0 +1,16 @@
+2024-12-05 23:52:08,531 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-05 23:52:08,690 - __main__ - INFO - Processed 12 total document chunks
+2024-12-05 23:52:08,692 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-05 23:52:08,692 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-05 23:52:12,698 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-05 23:52:12,871 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-05 23:52:12,887 - __main__ - INFO - FAISS index loaded successfully
+2024-12-05 23:53:53,655 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-05 23:57:22,718 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-05 23:57:22,863 - __main__ - INFO - Processed 12 total document chunks
+2024-12-05 23:57:22,865 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-05 23:57:22,866 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-05 23:57:27,816 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-05 23:57:27,973 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-05 23:57:27,987 - __main__ - INFO - FAISS index loaded successfully
+2024-12-05 23:58:46,227 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
