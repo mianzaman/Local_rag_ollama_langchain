@@ -1,0 +1,13 @@
+langchain
+langchain-core
+langchain-community
+langchain-ollama
+langchain-openai
+PyPDF2
+scikit-learn
+openai
+sentence-transformers
+langchain-huggingface
+faiss-cpu
+pypdf
+# faiss-gpu
