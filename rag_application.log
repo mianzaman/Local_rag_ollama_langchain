@@ -14,3 +14,13 @@
 2024-12-05 23:57:27,973 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
 2024-12-05 23:57:27,987 - __main__ - INFO - FAISS index loaded successfully
 2024-12-05 23:58:46,227 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 00:44:51,412 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 00:44:51,413 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 00:44:51,414 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 00:44:51,688 - __main__ - INFO - Processed 23 total document chunks
+2024-12-06 00:44:51,689 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 00:44:51,690 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 00:44:55,682 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 00:44:55,704 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 00:44:55,719 - __main__ - INFO - FAISS index loaded successfully
+2024-12-06 00:47:10,767 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"

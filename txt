@@ -5,3 +5,21 @@ For sports shooters participating in international competitions, what type of re
 Does the joint permit cover both the transportation of weapons and ammunition during travel?
 What types of weapons are covered under this joint permit provision for sports shooters?
 How does the verification process work to ensure that permit holders won't pose a risk to Switzerland's internal or public security?
+
+
+pip install fastapi uvicorn sqlalchemy python-jose[cryptography] passlib python-multipart python-dotenv
+
+env
+SECRET_KEY=your-secure-secret-key
+DATABASE_URL=sqlite:///./conversations.db
+
+
+uvicorn main:app --reload
+
+
+# Create React app
+npx create-react-app rag-frontend
+cd rag-frontend
+
+# Install dependencies
+npm install axios lucide-react @tailwindcss/forms

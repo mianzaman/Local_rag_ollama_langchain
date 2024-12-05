@@ -2,3 +2,4 @@
 .cspell/
 .faiss_index
 .rag_application.log
+.data/

@@ -11,3 +11,5 @@ langchain-huggingface
 faiss-cpu
 pypdf
 # faiss-gpu
+fastapi 
+uvicorn
