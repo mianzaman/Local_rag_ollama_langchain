@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -5,6 +6,7 @@ from typing import List, Optional
 import logging
 import yaml
 from pathlib import Path
+from test import RAGApplication 
 
 # Configure logging
 logging.basicConfig(
@@ -13,7 +15,25 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-app = FastAPI()
+# Global variable for RAG application
+rag_app = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan context manager for FastAPI application"""
+    global rag_app
+    try:
+        rag_app = RAGApplication("config.yaml")
+        logger.info("RAG application initialized successfully")
+        yield
+    except Exception as e:
+        logger.error(f"Failed to initialize RAG application: {str(e)}")
+        raise
+    finally:
+        # Cleanup code (if needed)
+        pass
+
+app = FastAPI(lifespan=lifespan)
 
 # Enable CORS - Important for frontend communication
 app.add_middleware(
@@ -34,20 +54,6 @@ class SourceDocument(BaseModel):
 
 class QuestionResponse(BaseModel):
     answer: str
-    source_documents: List[SourceDocument]
-    status: str = "success"
-    error: Optional[str] = None
-
-# Initialize RAG application at startup
-@app.on_event("startup")
-async def startup_event():
-    global rag_app
-    try:
-        rag_app = RAGApplication("config.yaml")
-        logger.info("RAG application initialized successfully")
-    except Exception as e:
-        logger.error(f"Failed to initialize RAG application: {str(e)}")
-        raise
 
 @app.get("/health")
 async def health_check():
@@ -67,21 +73,15 @@ async def chat_endpoint(request: QuestionRequest):
             logger.error(f"RAG error: {result['error']}")
             raise HTTPException(status_code=500, detail=result["error"])
             
+        # Extract answer without confidence score
+        answer = result["answer"].split("\n\nConfidence score:")[0]
         logger.info("Successfully processed question")
-        return {
-            "answer": result["answer"],
-            "source_documents": result["source_documents"],
-            "status": "success"
-        }
+        
+        return {"answer": answer}
         
     except Exception as e:
         logger.error(f"Error processing question: {str(e)}")
-        return {
-            "answer": "An error occurred while processing your question.",
-            "source_documents": [],
-            "status": "error",
-            "error": str(e)
-        }
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

@@ -24,3 +24,307 @@
 2024-12-06 00:44:55,704 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
 2024-12-06 00:44:55,719 - __main__ - INFO - FAISS index loaded successfully
 2024-12-06 00:47:10,767 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 21:51:46,611 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 21:51:46,611 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 21:51:46,613 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 21:51:47,201 - test - INFO - Processed 23 total document chunks
+2024-12-06 21:51:47,204 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 21:51:47,204 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 21:51:52,801 - test - ERROR - Error loading FAISS index: Can't get attribute 'LocalEmbeddingWrapper' on <module '__main__' (<class '_frozen_importlib.BuiltinImporter'>)>
+2024-12-06 21:51:52,801 - test - INFO - Creating new FAISS index
+2024-12-06 21:51:53,643 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 21:51:53,923 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 21:51:53,933 - api - ERROR - Failed to initialize RAG application: FAISS.__init__() got an unexpected keyword argument 'batch_size'
+2024-12-06 21:55:01,799 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 21:55:01,801 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 21:55:01,802 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 21:55:02,226 - test - INFO - Processed 23 total document chunks
+2024-12-06 21:55:02,227 - api - ERROR - Failed to initialize RAG application: name 'VectorStoreManager' is not defined
+2024-12-06 21:55:11,840 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 21:55:11,840 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 21:55:11,842 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 21:55:12,441 - test - INFO - Processed 23 total document chunks
+2024-12-06 21:55:12,446 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 21:55:12,446 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 21:55:16,042 - test - INFO - Creating new FAISS index
+2024-12-06 21:55:16,604 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 21:55:16,636 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 21:55:16,645 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 21:55:16,648 - test - INFO - FAISS index created and saved successfully
+2024-12-06 21:55:17,233 - api - INFO - RAG application initialized successfully
+2024-12-06 21:55:25,705 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 21:57:32,926 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 21:58:01,507 - api - INFO - Successfully processed question
+2024-12-06 22:00:26,102 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:00:26,106 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:00:26,107 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:00:26,777 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:00:26,779 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:00:26,780 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:00:30,416 - test - INFO - Creating new FAISS index
+2024-12-06 22:00:30,985 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:00:31,022 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:00:31,036 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:00:31,038 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:00:31,686 - api - INFO - RAG application initialized successfully
+2024-12-06 22:00:48,556 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 22:00:49,518 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:01:14,868 - api - INFO - Successfully processed question
+2024-12-06 22:03:49,214 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:03:49,214 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:03:49,215 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:03:49,714 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:03:49,718 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:03:49,718 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:03:54,213 - test - INFO - Creating new FAISS index
+2024-12-06 22:03:54,675 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:03:54,703 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:03:54,712 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:03:54,714 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:03:55,302 - api - INFO - RAG application initialized successfully
+2024-12-06 22:04:31,070 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 22:04:31,719 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:04:57,557 - api - INFO - Successfully processed question
+2024-12-06 22:05:30,435 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 22:05:30,440 - api - INFO - Successfully processed question
+2024-12-06 22:05:48,289 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:05:48,290 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:05:48,291 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:05:49,043 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:05:49,049 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:05:49,050 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:05:54,614 - test - INFO - Creating new FAISS index
+2024-12-06 22:05:55,181 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:05:55,222 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:05:55,237 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:05:55,241 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:05:56,025 - api - INFO - RAG application initialized successfully
+2024-12-06 22:06:04,213 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:06:04,214 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:06:04,214 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:06:04,794 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:06:04,797 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:06:04,797 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:06:08,563 - test - INFO - Creating new FAISS index
+2024-12-06 22:06:09,054 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:06:09,091 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:06:09,103 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:06:09,106 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:06:09,926 - api - INFO - RAG application initialized successfully
+2024-12-06 22:06:32,112 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 22:06:33,005 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:06:58,494 - api - INFO - Successfully processed question
+2024-12-06 22:14:33,496 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:14:33,497 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:14:33,498 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:14:33,821 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:14:33,822 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:14:33,823 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:14:37,489 - test - INFO - Creating new FAISS index
+2024-12-06 22:14:37,753 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:14:37,768 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:14:37,775 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:14:37,776 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:14:38,197 - api - INFO - RAG application initialized successfully
+2024-12-06 22:16:43,855 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:16:43,855 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:16:43,857 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:16:44,472 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:16:44,474 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:16:44,475 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:16:47,941 - test - INFO - Creating new FAISS index
+2024-12-06 22:16:48,450 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:16:48,486 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:16:48,502 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:16:48,505 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:16:49,167 - api - INFO - RAG application initialized successfully
+2024-12-06 22:16:49,170 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 22:18:27,956 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:18:54,901 - api - INFO - Successfully processed question
+2024-12-06 22:23:25,679 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:23:25,680 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:23:25,681 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:23:26,015 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:23:26,018 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:23:26,018 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:23:30,736 - test - INFO - Creating new FAISS index
+2024-12-06 22:23:31,002 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:23:31,023 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:23:31,030 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:23:31,031 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:23:31,395 - api - INFO - RAG application initialized successfully
+2024-12-06 22:24:27,027 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 22:26:11,188 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:26:42,687 - api - INFO - Successfully processed question
+2024-12-06 22:31:24,622 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:31:24,623 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:31:24,624 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:31:25,099 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:31:25,101 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:31:25,101 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:31:28,815 - test - INFO - Creating new FAISS index
+2024-12-06 22:31:29,111 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:31:29,130 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:31:29,136 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:31:29,137 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:31:29,486 - api - INFO - RAG application initialized successfully
+2024-12-06 22:31:37,125 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:31:37,126 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:31:37,127 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:31:37,660 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:31:37,663 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:31:37,663 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:31:40,724 - test - INFO - Creating new FAISS index
+2024-12-06 22:31:41,236 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:31:41,264 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:31:41,275 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:31:41,279 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:31:41,819 - api - INFO - RAG application initialized successfully
+2024-12-06 22:33:49,257 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:33:49,258 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:33:49,260 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:33:49,803 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:33:49,804 - api - ERROR - Failed to initialize RAG application: name 'VectorStoreManager' is not defined
+2024-12-06 22:33:59,569 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:33:59,569 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:33:59,570 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:34:00,293 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:34:00,296 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:34:00,297 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:34:04,207 - test - INFO - Creating new FAISS index
+2024-12-06 22:34:04,494 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:34:04,509 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:34:04,515 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:34:04,517 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:34:04,861 - api - INFO - RAG application initialized successfully
+2024-12-06 22:34:15,250 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:34:15,262 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:34:15,271 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:34:17,309 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:34:17,310 - api - ERROR - Failed to initialize RAG application: name 'SentenceTransformerEmbeddings' is not defined
+2024-12-06 22:35:53,878 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:35:53,879 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:35:53,880 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:35:54,466 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:35:54,468 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:35:54,468 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:35:57,892 - test - INFO - Creating new FAISS index
+2024-12-06 22:35:58,446 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:35:58,478 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:35:58,487 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:35:58,490 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:35:59,027 - api - INFO - RAG application initialized successfully
+2024-12-06 22:38:03,688 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:38:03,689 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:38:03,690 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:38:04,536 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:38:04,538 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:38:04,538 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:38:08,302 - test - INFO - Creating new FAISS index
+2024-12-06 22:38:08,592 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:38:08,607 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:38:08,613 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:38:08,614 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:38:08,948 - api - INFO - RAG application initialized successfully
+2024-12-06 22:38:16,948 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:38:16,949 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:38:16,950 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:38:17,158 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:38:17,160 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:38:17,160 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:38:20,486 - test - INFO - Creating new FAISS index
+2024-12-06 22:38:21,063 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:38:21,117 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:38:21,137 - langchain_community.vectorstores.faiss - WARNING - `embedding_function` is expected to be an Embeddings object, support for passing in a function will soon be removed.
+2024-12-06 22:38:21,142 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:38:21,761 - api - INFO - RAG application initialized successfully
+2024-12-06 22:38:40,882 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:38:40,882 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:38:40,883 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:38:41,186 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:38:41,186 - api - ERROR - Failed to initialize RAG application: name 'VectorStoreManager' is not defined
+2024-12-06 22:38:49,115 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:38:49,116 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:38:49,116 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:38:49,332 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:38:49,335 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:38:49,335 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:38:53,471 - test - INFO - Creating new FAISS index
+2024-12-06 22:38:53,867 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:38:53,882 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:38:53,889 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:38:54,239 - api - INFO - RAG application initialized successfully
+2024-12-06 22:41:32,162 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 22:43:16,072 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:43:41,675 - api - INFO - Successfully processed question
+2024-12-06 22:44:23,786 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 22:44:23,787 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 22:44:23,788 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 22:44:24,139 - test - INFO - Processed 23 total document chunks
+2024-12-06 22:44:24,140 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 22:44:24,141 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 22:44:29,268 - test - INFO - Creating new FAISS index
+2024-12-06 22:44:30,026 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 22:44:30,063 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 22:44:30,078 - test - INFO - FAISS index created and saved successfully
+2024-12-06 22:44:30,907 - api - INFO - RAG application initialized successfully
+2024-12-06 22:49:40,641 - api - INFO - Received question: What is the primary safety consideration the Central Weapons Office evaluates when issuing joint permits for sports shooters?
+2024-12-06 22:51:18,765 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:51:35,179 - api - INFO - Successfully processed question
+2024-12-06 22:57:29,874 - api - INFO - Received question: Does the joint permit cover both the transportation of weapons and ammunition during travel?
+2024-12-06 22:59:19,798 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 22:59:39,226 - api - INFO - Successfully processed question
+2024-12-06 23:29:10,961 - api - INFO - Received question: Unter welchen Voraussetzungen kann das Zentrale Waffenamt eine gemeinsame Erlaubnis zum vorübergehenden Waffenverkehr für Sportschützen erteilen?
+2024-12-06 23:31:10,833 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 23:31:45,971 - api - INFO - Successfully processed question
+2024-12-06 23:33:03,429 - api - INFO - Received question: What is the process for obtaining a temporary permit for bringing hunting and sports weapons into Switzerland for participation in shooting sports events, as outlined in Article 40a of the amended Weapons Ordinance?
+2024-12-06 23:34:24,827 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 23:34:51,249 - api - INFO - Successfully processed question
+2024-12-06 23:36:03,129 - api - INFO - Received question: How does the verification process work to ensure that permit holders won't pose a risk to Switzerland's internal or public security?
+2024-12-06 23:37:19,606 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 23:37:37,358 - api - INFO - Successfully processed question
+2024-12-06 23:40:37,266 - api - INFO - Received question: What documents are required for the application of a joint permit for temporary transport of firearms?
+2024-12-06 23:41:46,071 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 23:42:01,809 - api - INFO - Successfully processed question
+2024-12-06 23:43:03,809 - api - INFO - Received question: What is the role of the organization hosting a shooting event in the permit application process for temporary transport of weapons?
+2024-12-06 23:44:19,079 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 23:44:44,034 - api - INFO - Successfully processed question
+2024-12-06 23:45:58,611 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-06 23:47:10,758 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-06 23:47:35,576 - api - INFO - Successfully processed question
+2024-12-06 23:59:28,054 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-06 23:59:28,055 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-06 23:59:28,055 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-06 23:59:28,455 - test - INFO - Processed 23 total document chunks
+2024-12-06 23:59:28,458 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-06 23:59:28,458 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-06 23:59:32,301 - test - INFO - Creating new FAISS index
+2024-12-06 23:59:32,629 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-06 23:59:32,667 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-06 23:59:32,680 - test - INFO - FAISS index created and saved successfully
+2024-12-06 23:59:33,194 - api - INFO - RAG application initialized successfully
+2024-12-07 00:05:48,147 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-07 00:05:48,149 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-07 00:05:48,149 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-07 00:05:48,680 - test - INFO - Processed 23 total document chunks
+2024-12-07 00:05:48,683 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-07 00:05:48,683 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-07 00:05:54,036 - test - INFO - Creating new FAISS index
+2024-12-07 00:05:54,542 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-07 00:05:54,571 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-07 00:05:54,585 - test - INFO - FAISS index created and saved successfully
+2024-12-07 00:05:55,205 - api - INFO - RAG application initialized successfully
+2024-12-07 00:06:34,560 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-07 00:08:54,306 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-07 00:09:21,517 - api - INFO - Successfully processed question
+2024-12-07 00:12:32,397 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-07 00:12:32,398 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-07 00:12:32,399 - __main__ - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-07 00:12:32,952 - __main__ - INFO - Processed 23 total document chunks
+2024-12-07 00:12:32,955 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-07 00:12:32,955 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-07 00:12:38,073 - __main__ - INFO - Creating new FAISS index
+2024-12-07 00:12:38,658 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-07 00:12:38,731 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-07 00:12:38,850 - __main__ - INFO - FAISS index created and saved successfully
+2024-12-07 00:12:40,341 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"

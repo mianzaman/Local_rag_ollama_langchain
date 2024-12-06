@@ -1,21 +1,22 @@
 import logging
 import yaml
 import os
-import pickle
 from typing import List, Dict, Any
 from dataclasses import dataclass
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from functools import lru_cache
 
-from langchain.document_loaders import PyPDFLoader
+# Updated imports for LangChain components
+from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
 from langchain_ollama import ChatOllama
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain.vectorstores import FAISS
-from sentence_transformers import SentenceTransformer
 from langchain.schema import Document
+from langchain_core.embeddings import Embeddings
+from sentence_transformers import SentenceTransformer
 
 # Configure logging
 logging.basicConfig(
@@ -49,6 +50,41 @@ class RAGConfig:
             config_dict = yaml.safe_load(f)
         return cls(**config_dict)
 
+class SentenceTransformerEmbeddings(Embeddings):
+    """LangChain Embeddings interface implementation using sentence-transformers."""
+    
+    def __init__(self, model_name: str):
+        """Initialize the embedding model.
+        
+        Args:
+            model_name (str): Name of the sentence-transformers model to use
+        """
+        self.model = SentenceTransformer(model_name)
+
+    def embed_documents(self, texts: List[str]) -> List[List[float]]:
+        """Generate embeddings for a list of documents.
+        
+        Args:
+            texts (List[str]): List of text documents to embed
+            
+        Returns:
+            List[List[float]]: List of embeddings, one for each document
+        """
+        embeddings = self.model.encode(texts, batch_size=32, convert_to_tensor=False)
+        return embeddings.tolist()
+
+    def embed_query(self, text: str) -> List[float]:
+        """Generate embedding for a single query text.
+        
+        Args:
+            text (str): Query text to embed
+            
+        Returns:
+            List[float]: Embedding vector for the query
+        """
+        embedding = self.model.encode(text, convert_to_tensor=False)
+        return embedding.tolist()
+
 class DocumentProcessor:
     """Handles document loading and processing"""
     def __init__(self, config: RAGConfig):
@@ -59,12 +95,28 @@ class DocumentProcessor:
         )
 
     def process_pdf(self, pdf_path: str) -> List[Document]:
-        """Process a single PDF file"""
+        """Process a single PDF file.
+        
+        Args:
+            pdf_path (str): Path to the PDF file
+            
+        Returns:
+            List[Document]: List of processed document chunks
+        """
         try:
             logger.info(f"Processing file: {pdf_path}")
             loader = PyPDFLoader(pdf_path)
             docs = loader.load()
-            return self.text_splitter.split_documents(docs)
+            
+            # Ensure metadata is preserved during splitting
+            splits = self.text_splitter.split_documents(docs)
+            for split in splits:
+                split.metadata.update({
+                    'source': Path(pdf_path).name,
+                    'page': split.metadata.get('page', None)
+                })
+            
+            return splits
         except Exception as e:
             logger.error(f"Error processing {pdf_path}: {str(e)}")
             return []
@@ -86,54 +138,37 @@ class DocumentProcessor:
         logger.info(f"Processed {len(doc_splits)} total document chunks")
         return doc_splits
 
-class LocalEmbeddingWrapper:
-    """Wrapper for local embedding model"""
-    def __init__(self, model_name: str):
-        self.model = SentenceTransformer(model_name)
-        
-    def embed_documents(self, texts: List[str]) -> List[List[float]]:
-        """Batch embed documents"""
-        return self.model.encode(texts, batch_size=32, convert_to_tensor=False)
-        
-    @lru_cache(maxsize=1000)
-    def embed_query(self, text: str) -> List[float]:
-        """Embed a single query with caching"""
-        return self.model.encode(text, convert_to_tensor=False)
-        
-    def __call__(self, text: str) -> List[float]:
-        return self.embed_query(text)
-
 class VectorStoreManager:
     """Manages vector store operations"""
     def __init__(self, config: RAGConfig):
         self.config = config
-        self.embedding_function = LocalEmbeddingWrapper(config.embedding_model_name)
+        self.embedding_function = SentenceTransformerEmbeddings(config.embedding_model_name)
         
     def load_or_create(self, documents: List[Document]) -> FAISS:
         """Load existing vector store or create new one"""
-        store_path = Path(self.config.faiss_index_path) / "faiss_store.pkl"
+        store_path = Path(self.config.faiss_index_path)
+        index_path = store_path / "index.faiss"
+        store_path.mkdir(exist_ok=True)
         
-        if store_path.exists() and store_path.stat().st_size > 0:
+        if index_path.exists():
             try:
-                with open(store_path, "rb") as f:
-                    vectorstore = pickle.load(f)
+                vectorstore = FAISS.load_local(
+                    store_path.as_posix(),
+                    self.embedding_function,
+                    "index.faiss"
+                )
                 logger.info("FAISS index loaded successfully")
                 return vectorstore
             except Exception as e:
                 logger.error(f"Error loading FAISS index: {str(e)}")
                 
-        # Create new index if loading fails or file doesn't exist
         logger.info("Creating new FAISS index")
-        vectorstore = FAISS.from_texts(
-            [doc.page_content for doc in documents],
-            self.embedding_function,
-            batch_size=self.config.batch_size
+        vectorstore = FAISS.from_documents(
+            documents,
+            self.embedding_function
         )
         
-        # Save new index
-        store_path.parent.mkdir(exist_ok=True)
-        with open(store_path, "wb") as f:
-            pickle.dump(vectorstore, f)
+        vectorstore.save_local(store_path.as_posix(), "index.faiss")
         logger.info("FAISS index created and saved successfully")
         
         return vectorstore
@@ -208,21 +243,6 @@ class RAGApplication:
                 "status": "error"
             }
 
-# Example configuration file (config.yaml):
-"""
-pdf_dir: "E:/allinweb/Local_rag_ollama_langchain/data"
-chunk_size: 150
-chunk_overlap: 50
-embedding_model_name: "all-MiniLM-L6-v2"
-llm_model_name: "llama3.1"
-temperature: 0
-retriever_k: 4
-max_workers: 4
-faiss_index_path: "faiss_index"
-batch_size: 32
-"""
-
-# Example usage:
 if __name__ == "__main__":
     # Initialize and use the RAG application
     rag_app = RAGApplication("config.yaml")

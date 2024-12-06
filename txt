@@ -5,21 +5,59 @@ For sports shooters participating in international competitions, what type of re
 Does the joint permit cover both the transportation of weapons and ammunition during travel?
 What types of weapons are covered under this joint permit provision for sports shooters?
 How does the verification process work to ensure that permit holders won't pose a risk to Switzerland's internal or public security?
+What is the purpose of Article 40a in the amended Weapons Ordinance?
+Who can apply for a joint permit for bringing hunting and sports weapons into Switzerland under the new regulation?
+What is the simplified procedure for obtaining a temporary permit for transporting firearms in the context of shooting sports events?
+What documents are required for the application of a joint permit for temporary transport of firearms?
+How does the Swiss government ensure the safety of Switzerland's internal and public security when issuing temporary permits for firearms?
+What is the role of the organization hosting a shooting event in the permit application process for temporary transport of weapons?
+What steps must be taken when applying for a simplified permit procedure for minor sports shooters?
+What happens if the simplified permit procedure for transporting weapons is applied to minors?
+What is the fee associated with the permit for bringing firearms into Switzerland for shooting sports events?
+Which authorities need to approve the simplified permit procedure for firearms transport in Switzerland?
+What is the main purpose of the regulation concerning the transfer of VAT revenue to the AHV Compensation Fund?
+What is the frequency of the VAT revenue share transfer to the AHV Compensation Fund as per the new regulation?
+When are the Akontozahlungen (advance payments) for the AHV fund due each month?
+How are the monthly Akontozahlungen for the AHV fund calculated?
+What changes were made to the regulation in the amendment of December 20, 2019?
+What is the amount of the Akontozahlungen relative to the yearly VAT revenue budgeted in the federal budget?
+When is the final (rest) payment to the AHV Compensation Fund made?
+How does the regulation ensure timely transfers to the AHV fund?
+What happens if the Akontozahlungen are delayed?
+When did the amended regulation regarding VAT transfers to the AHV Compensation Fund come into effect?
+
+What is the process for obtaining a temporary permit for bringing hunting and sports weapons into Switzerland for participation in shooting sports events, as outlined in Article 40a of the amended Weapons Ordinance?
+
+Request → FastAPI → RAG Application
+↓
+1. API receives question at /api/chat
+2. Question passed to RAG Application:
+   - Converts question to embedding
+   - Searches FAISS index for similar documents
+   - Sends relevant docs + question to LLM
+   - Returns answer
+3. API removes confidence score and returns response
 
 
-pip install fastapi uvicorn sqlalchemy python-jose[cryptography] passlib python-multipart python-dotenv
 
-env
-SECRET_KEY=your-secure-secret-key
-DATABASE_URL=sqlite:///./conversations.db
+Run test.py → RAG Application
+↓
+1. Loads and processes PDF documents
+2. Creates embeddings and FAISS index
+3. Accepts question directly
+4. Same processing as API workflow
+5. Prints full response with metadata
 
+Embeddings Creation:
+1. Documents split into chunks
+2. SentenceTransformer model converts chunks to vectors
+3. Vectors stored in FAISS index
+4. Questions also converted to vectors for similarity search
 
-uvicorn main:app --reload
+Chat Process:
 
-
-# Create React app
-npx create-react-app rag-frontend
-cd rag-frontend
-
-# Install dependencies
-npm install axios lucide-react @tailwindcss/forms
+1. Question received
+2. Vector similarity search finds relevant docs
+3. Docs + question sent to LLM (Llama3.1)
+4. LLM generates answer using provided context
+5. Response includes answer and confidence score
