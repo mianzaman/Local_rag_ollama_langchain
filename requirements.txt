@@ -13,3 +13,4 @@ pypdf
 # faiss-gpu
 fastapi 
 uvicorn
+streamlit

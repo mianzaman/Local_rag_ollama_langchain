@@ -328,3 +328,31 @@
 2024-12-07 00:12:38,731 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
 2024-12-07 00:12:38,850 - __main__ - INFO - FAISS index created and saved successfully
 2024-12-07 00:12:40,341 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-07 00:24:44,470 - api - INFO - Received question: How does the verification process work to ensure that permit holders won't pose a risk to Switzerland's internal or public security?
+2024-12-07 00:26:26,844 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-07 00:26:47,124 - api - INFO - Successfully processed question
+2024-12-07 00:37:58,590 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-07 00:37:58,591 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-07 00:37:58,592 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-07 00:37:59,064 - test - INFO - Processed 23 total document chunks
+2024-12-07 00:37:59,067 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-07 00:37:59,068 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-07 00:38:02,926 - test - INFO - Creating new FAISS index
+2024-12-07 00:38:03,507 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-07 00:38:03,571 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-07 00:38:03,587 - test - INFO - FAISS index created and saved successfully
+2024-12-07 00:38:04,230 - api - INFO - RAG application initialized successfully
+2024-12-07 00:40:01,069 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-07 00:40:01,070 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-07 00:40:01,072 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-07 00:40:01,918 - test - INFO - Processed 23 total document chunks
+2024-12-07 00:40:01,926 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-07 00:40:01,927 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-07 00:40:06,122 - test - INFO - Creating new FAISS index
+2024-12-07 00:40:06,663 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-07 00:40:06,699 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-07 00:40:06,709 - test - INFO - FAISS index created and saved successfully
+2024-12-07 00:40:07,352 - api - INFO - RAG application initialized successfully
+2024-12-07 00:40:39,543 - api - INFO - Received question: What is the main purpose of the regulation concerning the transfer of VAT revenue to the AHV Compensation Fund?
+2024-12-07 00:43:00,230 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-07 00:43:27,882 - api - INFO - Successfully processed question
