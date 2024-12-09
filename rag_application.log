@@ -356,3 +356,31 @@
 2024-12-07 00:40:39,543 - api - INFO - Received question: What is the main purpose of the regulation concerning the transfer of VAT revenue to the AHV Compensation Fund?
 2024-12-07 00:43:00,230 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
 2024-12-07 00:43:27,882 - api - INFO - Successfully processed question
+2024-12-07 01:08:38,588 - api - INFO - Received question: What is the fee associated with the permit for bringing firearms into Switzerland for shooting sports events?
+2024-12-07 01:11:04,515 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-07 01:11:29,703 - api - INFO - Successfully processed question
+2024-12-09 17:56:27,309 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-7-de-pdf-a.pdf
+2024-12-09 17:56:27,310 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-8-de-pdf-a.pdf
+2024-12-09 17:56:27,312 - test - INFO - Processing file: E:/allinweb/Local_rag_ollama_langchain/data\fedlex-data-admin-ch-eli-oc-2020-9-de-pdf-a.pdf
+2024-12-09 17:56:27,971 - test - INFO - Processed 23 total document chunks
+2024-12-09 17:56:27,976 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2024-12-09 17:56:27,976 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-12-09 17:56:33,237 - test - INFO - Creating new FAISS index
+2024-12-09 17:56:34,404 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2024-12-09 17:56:34,816 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2024-12-09 17:56:34,847 - test - INFO - FAISS index created and saved successfully
+2024-12-09 17:56:35,766 - api - INFO - RAG application initialized successfully
+2024-12-09 17:58:16,071 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-09 18:00:14,812 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-09 18:00:40,298 - api - INFO - Successfully processed question
+2024-12-09 18:01:01,590 - api - INFO - Received question: Under what conditions can the Central Weapons Office issue a joint permit for temporary movement of weapons for sports shooters?
+2024-12-09 18:01:01,592 - api - INFO - Successfully processed question
+2024-12-09 18:01:13,168 - api - INFO - Received question: What is the primary safety consideration the Central Weapons Office evaluates when issuing joint permits for sports shooters?
+2024-12-09 18:02:52,235 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-09 18:03:13,239 - api - INFO - Successfully processed question
+2024-12-09 18:03:28,462 - api - INFO - Received question: How does the Swiss government ensure the safety of Switzerland's internal and public security when issuing temporary permits for firearms?
+2024-12-09 18:05:17,865 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-09 18:05:46,298 - api - INFO - Successfully processed question
+2024-12-09 18:07:00,302 - api - INFO - Received question: Which authorities need to approve the simplified permit procedure for firearms transport in Switzerland?
+2024-12-09 18:09:05,784 - httpx - INFO - HTTP Request: POST http://127.0.0.1:11434/api/chat "HTTP/1.1 200 OK"
+2024-12-09 18:09:28,519 - api - INFO - Successfully processed question
