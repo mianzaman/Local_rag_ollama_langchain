@@ -18,6 +18,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain.schema import Document
 from langchain_core.embeddings import Embeddings
 from sentence_transformers import SentenceTransformer
+import faiss
 
 # Configure logging
 logging.basicConfig(
@@ -100,7 +101,7 @@ class GPUDocumentProcessor:
         if hasattr(self.text_splitter, 'tokenizer'):
             self.text_splitter.tokenizer.to(DEVICE)
 
-    @torch.cuda.amp.autocast()
+    @torch.amp.autocast('cuda')
     def process_pdf(self, pdf_path: str) -> List[Document]:
         """Process a single PDF file with GPU acceleration where possible."""
         try:
@@ -148,8 +149,8 @@ class GPUVectorStoreManager:
     def __init__(self, config: RAGConfig):
         self.config = config
         self.embedding_function = SentenceTransformerEmbeddings(config.embedding_model_name)
-        
-    @torch.cuda.amp.autocast()
+    
+    @torch.amp.autocast('cuda')  # Updated decorator
     def load_or_create(self, documents: List[Document]) -> FAISS:
         """Load or create vector store with GPU optimization"""
         store_path = Path(self.config.faiss_index_path)
@@ -163,29 +164,23 @@ class GPUVectorStoreManager:
                     self.embedding_function,
                     "index.faiss"
                 )
-                # Move index to GPU if possible
-                if hasattr(vectorstore, 'index'):
-                    vectorstore.index.to(DEVICE)
-                logger.info("FAISS index loaded successfully on GPU")
+                logger.info("FAISS index loaded successfully")
                 return vectorstore
             except Exception as e:
                 logger.error(f"Error loading FAISS index: {str(e)}")
                 
-        logger.info("Creating new FAISS index on GPU")
+        logger.info("Creating new FAISS index")
         vectorstore = FAISS.from_documents(
             documents,
             self.embedding_function
         )
         
-        # Move index to GPU if possible
-        if hasattr(vectorstore, 'index'):
-            vectorstore.index.to(DEVICE)
-        
+        # Save the CPU index first
         vectorstore.save_local(store_path.as_posix(), "index.faiss")
         logger.info("FAISS index created and saved successfully")
         
         return vectorstore
-
+  
 class RAGApplication:
     """GPU-optimized RAG application class"""
     def __init__(self, config_path: str):
@@ -232,7 +227,7 @@ class RAGApplication:
         self.chain = prompt | llm | StrOutputParser()
         
     @lru_cache(maxsize=100)
-    @torch.cuda.amp.autocast()
+    @torch.amp.autocast('cuda')
     def get_answer(self, question: str) -> Dict[str, Any]:
         """Get answer for a question with GPU acceleration and caching"""
         try:
