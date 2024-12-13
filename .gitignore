@@ -3,3 +3,13 @@
 .faiss_index
 .rag_application.log
 .data/
+
+__pycache__/
+conda/
+.conda/
+.env
+venv/
+.venv/
+
+
+*.log

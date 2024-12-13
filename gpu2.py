@@ -7,8 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 from functools import lru_cache
-
-# Updated imports for LangChain components
+from transformers import AutoTokenizer, AutoModel
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
@@ -17,28 +16,29 @@ from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain.schema import Document
 from langchain_core.embeddings import Embeddings
-from sentence_transformers import SentenceTransformer
-import faiss
+from sentence_transformers import SentenceTransformer, models
+import re
+import spacy
+from PyPDF2 import PdfReader
+
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('rag_application.log'),
+        logging.FileHandler('rag_tax_application.log'),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
 
-# Check if CUDA is available
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 if not torch.cuda.is_available():
     logger.warning("CUDA not available. Running on CPU.")
 
 @dataclass
 class RAGConfig:
-    """Configuration class for RAG application parameters"""
     pdf_dir: str
     chunk_size: int
     chunk_overlap: int
@@ -52,111 +52,127 @@ class RAGConfig:
 
     @classmethod
     def from_yaml(cls, config_path: str) -> 'RAGConfig':
-        """Load configuration from YAML file"""
         with open(config_path, 'r') as f:
             config_dict = yaml.safe_load(f)
         return cls(**config_dict)
 
+
 class SentenceTransformerEmbeddings(Embeddings):
-    """GPU-optimized LangChain Embeddings implementation using sentence-transformers."""
-    
     def __init__(self, model_name: str):
-        """Initialize the embedding model on GPU."""
-        self.model = SentenceTransformer(model_name)
-        self.model = self.model.to(DEVICE)
+        try:
+            # Load the model directly using SentenceTransformers
+            self.model = SentenceTransformer(model_name)
+        except Exception:
+            print(f"Model '{model_name}' not found in SentenceTransformers. Loading manually from Hugging Face...")
+            # Load the transformer and tokenizer from Hugging Face
+            transformer_model = AutoModel.from_pretrained(model_name)
+            tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+            # Create SentenceTransformer model with pooling
+            word_embedding_model = models.Transformer(model_name, model=transformer_model, tokenizer=tokenizer)
+            pooling_model = models.Pooling(word_embedding_model.get_word_embedding_dimension())
+            self.model = SentenceTransformer(modules=[word_embedding_model, pooling_model])
+
         self.batch_size = 32
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:
-        """Generate embeddings for documents using GPU batching."""
-        with torch.cuda.amp.autocast():  # Enable automatic mixed precision
-            embeddings = self.model.encode(
-                texts,
-                batch_size=self.batch_size,
-                convert_to_tensor=True,
-                device=DEVICE,
-                show_progress_bar=True
-            )
-            # Keep on GPU if possible
-            return embeddings.detach().cpu().numpy().tolist()
+        return self.model.encode(texts, batch_size=self.batch_size, convert_to_tensor=True).cpu().numpy().tolist()
 
     def embed_query(self, text: str) -> List[float]:
-        """Generate embedding for a query using GPU."""
-        with torch.cuda.amp.autocast():
-            embedding = self.model.encode(
-                text,
-                convert_to_tensor=True,
-                device=DEVICE
-            )
-            return embedding.detach().cpu().numpy().tolist()
+        return self.model.encode([text], convert_to_tensor=True).cpu().numpy()[0].tolist()
+
 
 class GPUDocumentProcessor:
-    """GPU-optimized document processing"""
     def __init__(self, config: RAGConfig):
         self.config = config
-        self.text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
+        self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=config.chunk_size,
-            chunk_overlap=config.chunk_overlap
+            chunk_overlap=config.chunk_overlap,
+            separators=["\n\n", ". ", "\n", " "]
         )
-        # Move tokenizer to GPU if available
-        if hasattr(self.text_splitter, 'tokenizer'):
-            self.text_splitter.tokenizer.to(DEVICE)
+        # Load NLP model for entity recognition
+        self.nlp = spacy.load("en_core_web_sm")
 
-    @torch.amp.autocast('cuda')
+    def extract_metadata(self, pdf_path: str, text: str) -> Dict[str, any]:
+        """Dynamically extract metadata from a PDF."""
+        metadata = {
+            "file_name": Path(pdf_path).name,
+            "file_path": pdf_path,
+        }
+        
+        # Extract case number
+        case_number_match = re.search(r"\d{2}\.\d{4}\.\d{3}", text)
+        metadata["case_number"] = case_number_match.group(0) if case_number_match else None
+
+        # Extract dates
+        date_match = re.findall(r"\d{2}\.\d{2}\.\d{4}", text)
+        metadata["dates"] = date_match if date_match else None
+
+        # Extract named entities for parties
+        doc = self.nlp(text)
+        parties = {"plaintiff": None, "defendant": None}
+        for ent in doc.ents:
+            if ent.label_ == "ORG":  # Adjust as per document content
+                if not parties["plaintiff"]:
+                    parties["plaintiff"] = ent.text
+                elif not parties["defendant"]:
+                    parties["defendant"] = ent.text
+        metadata["parties"] = parties
+
+        # Extract referenced laws
+        laws_match = re.findall(r"art\.\s\d+", text, re.IGNORECASE)
+        metadata["laws_referenced"] = laws_match if laws_match else None
+
+        return metadata
+
     def process_pdf(self, pdf_path: str) -> List[Document]:
-        """Process a single PDF file with GPU acceleration where possible."""
         try:
             logger.info(f"Processing file: {pdf_path}")
             loader = PyPDFLoader(pdf_path)
             docs = loader.load()
-            
-            # Batch process documents
-            splits = []
-            for i in range(0, len(docs), self.config.batch_size):
-                batch = docs[i:i + self.config.batch_size]
-                batch_splits = self.text_splitter.split_documents(batch)
-                splits.extend(batch_splits)
-            
+            combined_text = " ".join([doc.page_content for doc in docs])
+
+            # Extract metadata dynamically
+            metadata = self.extract_metadata(pdf_path, combined_text)
+
+            # Split documents into chunks
+            splits = self.text_splitter.split_documents(docs)
             for split in splits:
+                split.metadata.update(metadata)  # Add metadata to each chunk
                 split.metadata.update({
                     'source': Path(pdf_path).name,
                     'page': split.metadata.get('page', None)
                 })
-            
             return splits
         except Exception as e:
             logger.error(f"Error processing {pdf_path}: {str(e)}")
             return []
 
     def process_all_documents(self) -> List[Document]:
-        """Process all PDF documents in parallel with GPU acceleration"""
         pdf_files = [
             os.path.join(self.config.pdf_dir, f)
             for f in os.listdir(self.config.pdf_dir)
             if f.endswith('.pdf')
         ]
-        
         doc_splits = []
         with ThreadPoolExecutor(max_workers=self.config.max_workers) as executor:
             results = list(executor.map(self.process_pdf, pdf_files))
             for splits in results:
                 doc_splits.extend(splits)
-                
         logger.info(f"Processed {len(doc_splits)} total document chunks")
         return doc_splits
 
+
 class GPUVectorStoreManager:
-    """GPU-optimized vector store operations"""
     def __init__(self, config: RAGConfig):
         self.config = config
         self.embedding_function = SentenceTransformerEmbeddings(config.embedding_model_name)
-    
-    @torch.amp.autocast('cuda')  # Updated decorator
+
     def load_or_create(self, documents: List[Document]) -> FAISS:
-        """Load or create vector store with GPU optimization"""
         store_path = Path(self.config.faiss_index_path)
         index_path = store_path / "index.faiss"
         store_path.mkdir(exist_ok=True)
-        
+
         if index_path.exists():
             try:
                 vectorstore = FAISS.load_local(
@@ -168,81 +184,66 @@ class GPUVectorStoreManager:
                 return vectorstore
             except Exception as e:
                 logger.error(f"Error loading FAISS index: {str(e)}")
-                
+
         logger.info("Creating new FAISS index")
         vectorstore = FAISS.from_documents(
             documents,
             self.embedding_function
         )
-        
-        # Save the CPU index first
         vectorstore.save_local(store_path.as_posix(), "index.faiss")
         logger.info("FAISS index created and saved successfully")
-        
         return vectorstore
-  
+
 class RAGApplication:
-    """GPU-optimized RAG application class"""
     def __init__(self, config_path: str):
         self.config = RAGConfig.from_yaml(config_path)
         self.setup_components()
-        
+
     def setup_components(self):
-        """Initialize all components with GPU optimization"""
-        # Process documents
         doc_processor = GPUDocumentProcessor(self.config)
         documents = doc_processor.process_all_documents()
-        
-        # Setup vector store
+
         vector_store_manager = GPUVectorStoreManager(self.config)
         vectorstore = vector_store_manager.load_or_create(documents)
-        
-        # Setup retriever
+
         self.retriever = vectorstore.as_retriever(
             search_type="similarity",
             search_kwargs={"k": self.config.retriever_k}
         )
-        
-        # Setup LLM and prompt with GPU
-        prompt = PromptTemplate(
-            template="""You are a helpful assistant that answers questions in English.
-            Use the following documents to answer the question.
-            If you don't know the answer, just say that you don't know.
-            Use three sentences maximum and keep the answer concise.
-            Include confidence score (low/medium/high) based on document relevance.
-            Only use information from the provided documents.
-            Always respond in English regardless of the language in the documents.
 
-            Question: {question}
-            Documents: {documents}
-            Answer: """,
+        prompt = PromptTemplate(
+            template="""
+                You are a legal assistant specialized in tax law. Use the provided legal documents to answer the user's question.
+                Provide concise, accurate answers based on tax-related cases. Include the case name and page number if applicable.
+                Use the provided documents to answer the user's question.
+                
+                Question: {question}
+                Documents: {documents}
+                If no relevant information is found in the documents, respond: 'No information about restitution payments was found in the provided documents.'
+                Answer:
+                """,
             input_variables=["question", "documents"]
         )
-        
+
         llm = ChatOllama(
             model=self.config.llm_model_name,
             temperature=self.config.temperature,
-            gpu=True,
-            cuda=True  # Explicitly enable CUDA
+            max_tokens=150,
+            gpu=True
         )
-        
+
         self.chain = prompt | llm | StrOutputParser()
-        
+
     @lru_cache(maxsize=100)
-    @torch.amp.autocast('cuda')
     def get_answer(self, question: str) -> Dict[str, Any]:
-        """Get answer for a question with GPU acceleration and caching"""
         try:
-            # Retrieve relevant documents
             results = self.retriever.invoke(question)
-            doc_texts = "\n".join([doc.page_content for doc in results])
-            
-            # Get answer from LLM
+            doc_texts = "\n".join([doc.page_content[:500] for doc in results[:5]])
+
             answer = self.chain.invoke({
                 "question": question,
                 "documents": doc_texts
             })
-            
             return {
                 "answer": answer,
                 "source_documents": [doc.metadata for doc in results],
@@ -257,16 +258,16 @@ class RAGApplication:
             }
 
 if __name__ == "__main__":
-    # Initialize and use the GPU-optimized RAG application
     rag_app = RAGApplication("config.yaml")
-    
-    # Example question
-    question = "How does the regulation ensure timely transfers to the AHV fund?"
+
+    question = "In which cases were the defendants ordered to make restitution payments?"
     result = rag_app.get_answer(question)
-    
+
     if result["status"] == "success":
         print(f"Question: {question}")
         print(f"Answer: {result['answer']}")
-        print("Source documents:", result["source_documents"])
+        print("\nSource documents:")
+        for source in result["source_documents"]:
+            print(f"- File: {source['source']}, Page: {source.get('page', 'N/A')}")
     else:
         print(f"Error: {result['error']}")
